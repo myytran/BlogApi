@@ -1,0 +1,24 @@
+{
+  "name": "blogapiproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "model.js",
+  "dependencies": {
+    "express": "^4.16.3",
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/myytran/BlogApi.git"
+  },
+  "author": "My Tran",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/myytran/BlogApi/issues"
+  },
+  "homepage": "https://github.com/myytran/BlogApi#readme"
+}
