@@ -68,9 +68,9 @@ router.put('/', jsonParser, (req, res) => {
 });
 
 //endpoint for DELETE
-router.delete('/', (req, res) => {
+router.delete('/:id', (req, res) => {
   BlogPosts.delete(req.params.id);
-  console.log(`Deleted blog with id \`${req.params.ID}\``);
+  console.log(`Deleted blog with id \`${req.params.id}\``);
   res.status(204).end();
 });
 
