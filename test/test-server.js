@@ -6,7 +6,7 @@ const {app, runServer, closeServer}= require('../server'); //import server.js th
 const expect = chai.expect;
 chai.use(chaiHttp);
 
-describe('Blog Post', function() {
+describe('A blog application', function() {
 
 //activate server by calling runServer which in response returns new promise in its function to run Server
   before(function() {
@@ -33,7 +33,7 @@ describe('Blog Post', function() {
   });
 
   it('should add a blog on POST', function() {
-    const newPost = {title: 'foo', content: 'bar', author: 'my' };
+    const newPost = {title: 'foo', content: 'bar', author: 'bar' };
 
   const expectedKeys = ['id', 'publishDate'].concat(Object.keys(newPost));
 
@@ -50,6 +50,7 @@ return chai.request(app)
         expect(res.body.author).to.equal(newPost.author)
   });
 });
+});
 
 it('should error if POST missing expected values', function() {
    const badRequestData = {};
@@ -63,21 +64,23 @@ it('should error if POST missing expected values', function() {
 
  it('should update blog posts on PUT', function() {
 
-    return chai.request(app)
+      return chai.request(app)
       .get('/blog-posts')
-      .then(function( res) {
+      .then(function(res) {
         const updatedPost = Object.assign(res.body[0], {
-          title: 'connect the dots',
-          content: 'la la la la la'
-  });
+          title: 'i love ice cream',
+          content: 'nom nom nom'});
+          });
+
+
         return chai.request(app)
           .put(`/blog-posts/${res.body[0].id}`)
           .send(updatedPost)
+
           .then(function(res) {
             expect(res).to.have.status(204);
           });
-      });
-  });
+});
 
   it('should delete posts on DELETE', function() {
    return chai.request(app)
@@ -85,9 +88,8 @@ it('should error if POST missing expected values', function() {
      .then(function(res) {
        return chai.request(app)
          .delete(`/blog-posts/${res.body[0].id}`)
+       })
          .then(function(res) {
            expect(res).to.have.status(204);
          });
      });
- });
-}); //describe callback function ending brackets

@@ -1,7 +1,8 @@
 const express = require('express');
 const morgan = require('morgan');
 
-const blogPostsRouter = require('./blogPostsRouter');
+const BlogPosts = require('./blogPostRouter');
+
 const app = express();
 
 
@@ -9,7 +10,7 @@ app.use(morgan('common'));
 
 // you need to import `blogPostsRouter` router and route
 // requests to HTTP requests to `/blog-posts` to `blogPostsRouter`
-app.use('/blog-posts', blogPostsRouter);
+app.use('/blog-posts', BlogPosts);
 
 // both runServer and closeServer need to access the same
 // server object, so we declare `server` here, and then when
@@ -54,4 +55,5 @@ if (require.main === module) {
   runServer().catch(err => console.error(err));
 };
 
-module.exports = {app, runServer, closeServer}
+
+module.exports = {app, runServer, closeServer};

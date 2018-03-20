@@ -1,29 +1,25 @@
 const express = require('express');
-const router = express.router();
+const router = express.Router();
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
 
-const {blogPostRouter}= require('./models'); //? ask for clarification
+const {BlogPosts}= require('./model');
 
 
-function blogPost() {
+function createPost() {
   return 'Frizzy the cat has' + 'mutiple personalities' + 'and one of which inclines him to steal other cats squeaky balls'
-  }
+};
 
 
+BlogPosts.create('Rory and I adopted Frizzy the cat', createPost(), 3 );
+BlogPosts.create('Sadira and friends came over for dinner', createPost(), 5);
 
 
-blogPostRouter.create('Rory and I adopted Frizzy the cat', blogPost(), 3 );
-blogPostRouter.create('Sadira and friends came over for dinner', blogPost(), 5);
-
-router.get('/', (req, res) => {
-  res.json(blogPostRouter.get());
-});
 
 //Endpoint for GET requests, line 23 also calls blogPostRouter function to return JSON objects of blog posts.
 router.get('/', (req, res) => {
-  res.json(blogPostRouter.get());
+  res.json(BlogPosts.get());
 });
 
 
@@ -40,7 +36,7 @@ router.post('/', jsonParser, (req, res) => {
     }
   }
 
-  const item = blogPostRouter.create(req.body.title, req.body.author,req.body.content);
+  const item = BlogPosts.create(req.body.title, req.body.author,req.body.content);
   res.status(201).json(item);
 });
 
@@ -62,7 +58,7 @@ router.put('/', jsonParser, (req, res) => {
     return res.status(400).send(message);
   }
   console.log(`Updating blog post with id \`${req.params.id}\``);
-  blogPostRouter.update({
+  BlogPosts.update({
     id: req.params.id,
     title: req.body.title,
     author: req.body.author,
@@ -73,7 +69,7 @@ router.put('/', jsonParser, (req, res) => {
 
 //endpoint for DELETE
 router.delete('/', (req, res) => {
-  blogPostRouter.delete(req.params.id);
+  BlogPosts.delete(req.params.id);
   console.log(`Deleted blog with id \`${req.params.ID}\``);
   res.status(204).end();
 });
