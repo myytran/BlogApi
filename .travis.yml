@@ -1,2 +1,10 @@
 language: node_js
 node_js: node
+deploy:
+
+  provider: heroku
+  api_key:
+    secure: lmHyjtH9F6+NK+7EqaMEwFztSkju4Q/HpqgKh4qxartrcP9D9VDM4a2sIaFdKAg24tFyCP0leMnU/3JBsSssQLhr7fuviDflvJugkuTPq0gjE6j29zEr8Vy2s6xvOzpYAay++v+Uq+4xXJ3GtXsFhEBNQ5lJv2D4XZ9hU2XjLXndUS7pUh9Je53tIpohG4l2Zp3l1+zZA6EUBm0nePtw1nqkqCtFJqyU7fLLagd8ILL/2RPGCoiKx7WazjXwykurHBDj4yHT1TZmLJ4J4Sr67LB7v+tIE/QcJ7JTc5l2+UlqSAJ0rxhraRkw5m5DcjRLrc1huaE9KorVa9vJ9FS1/SCT+gvXZ6d7qF78Tb86UXqO20ebxDiQXbrZE2C7NEiF8l0NaYfQkwpr6C7pnFpxFPNruzDSdQCetHYSYLfxRZDr252Ev7G1JEg2XWz53DBsd8U5S0PvtnBymiVRowKzwGWfo7fziVWSiEy0Uvb14YhcVdHAg6XxaXWlezPsWxD7goS/vNoxJPh1XdCX6xg65HCDJxeW8HlW5K0mq9614kkuu0A4t/XR0GsSz2CAUN+yHv0xl9+LCvk8lQ5+hx4GWZuYrSEV7eMmsRJcyj5MMtxwzxdVW5QYMB1t8zhAjeS9gdSoDlzBeunk+gvKAisSrf8vrJLnMFzZVbHgbVhn/uQ=
+  app: https://desolate-mountain-95856.herokuapp.com
+  on:
+    repo: myytran/BlogApi
