@@ -1,7 +1,6 @@
 'use strict';
 
 const express = require('express');
-const morgan = require('morgan');
 const mongoose = require('mongoose'); //import Mongoose
 const bodyParser = require('body-parser');
 
@@ -12,18 +11,21 @@ mongoose.Promise = global.Promise;//sets Mongoose to use ES6 promises
 const { DATABASE_URL, PORT } = require('./config');
 const {newBlog} = require('./models'); //now that we have a database for newBlog, we can import model.js that contains newBlog schema!
 const app = express();
-
-
+const morgan = require('morgan');
 
 app.use(morgan('common'));
 app.use(bodyParser.json());
+
+
+
+
 
 //get posts to /posts endpoint
 app.get('/posts', (req, res) => {
    newBlog
    .find()
    .then(posts => {
-      res.json(post.map(post => post.serialize()));
+      res.json(posts.map(post => post.serialize()));
     })
     .catch(err => { //if endpoint fails then console error with 500 msg
         console.error(err);
@@ -115,10 +117,10 @@ app.use('*', function (req, res) {
 
 let server;
 // this function connects to our database, then starts the server
-function runServer(databaseUrl, port = PORT) {
+function runServer(DATABASE_URL, port = PORT) {
 
   return new Promise((resolve, reject) => {
-    mongoose.connect(databaseUrl, err => {
+    mongoose.connect(DATABASE_URL, err => {
       if (err) {
         return reject(err);
       }
